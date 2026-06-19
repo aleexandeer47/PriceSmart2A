@@ -55,7 +55,7 @@ loginCustomerController.login = async (req, res) => {
     //Generar el token
     const token = jsonwebtoken.sign(
       //#1- ¿que vamos a guardar?
-      { id: userFound._id, userType: "customer" },
+      { id: userFound._id, userType: "Customer" },
       //#2- Secret key
       config.JWT.secret,
       //#3- Tiempo de expiración

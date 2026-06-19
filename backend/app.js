@@ -15,6 +15,7 @@ import providerRoutes from "./src/routes/providers.js";
 import cartRoutes from "./src/routes/cart.js";
 import wompiRoutes from "./src/routes/wompi.js";
 import deliveryDriverRoute from "./src/routes/deliveryDriver.js"
+import { validateAuthCookie } from "./src/middlewares/authMiddleware.js";
 
 const app = express();
 
@@ -33,7 +34,7 @@ app.use(express.json());
 
 app.use("/api/products", productRoutes);
 app.use("/api/branches", branchesRoutes);
-app.use("/api/employees", employeesRoutes);
+app.use("/api/employees", validateAuthCookie(["admin"]), employeesRoutes);
 app.use("/api/brands", brandRoutes);
 app.use("/api/customers", customerRoutes);
 app.use("/api/registerCustomers", registerCustomerRoutes);
